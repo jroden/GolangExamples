@@ -13,15 +13,16 @@ type tree struct {
 }
 
 func (t tree) printtreeinorder() {
-	printinorder(t.head)
+	PrintInOrder(t.head)
 }
 
-func printinorder(n *node) {
+// PrintInOrder starting from node n
+func PrintInOrder(n *node) {
 	if n.lnode != nil {
-		printinorder(n.lnode)
+		PrintInOrder(n.lnode)
 	}
 	fmt.Println(n.val)
 	if n.rnode != nil {
-		printinorder(n.rnode)
+		PrintInOrder(n.rnode)
 	}
 }
