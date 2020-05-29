@@ -80,3 +80,16 @@ func interpolationsearch(arr []int, target int, low int, high int) (int, error) 
 	}
 	return 0, errFooNFound
 }
+
+// exponentialsearch finds subarray with target, then calls binary on subarray
+func exponentailsearch(arr []int, target int) (int, error) {
+	if arr[0] == target {
+		return 0, nil
+	}
+	for index := 1; index < len(arr); index = index * 2 {
+		if arr[index] > target {
+			return binarysearch(arr, target, 0, index)
+		}
+	}
+	return 0, errFooNFound
+}

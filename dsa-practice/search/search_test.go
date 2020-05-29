@@ -79,3 +79,37 @@ func TestInterpolationSearch(t *testing.T) {
 		t.Errorf("error should have been thrown for element not in slice")
 	}
 }
+
+func TestExponentialSearch(t *testing.T) {
+	input := []int{3, 6, 9, 12, 15, 18}
+	result, err := exponentailsearch(input, 12)
+	expected := 3
+	if result != expected || err != nil {
+		t.Errorf("expected %v got %v", expected, result)
+	}
+	result, err = exponentailsearch(input, 3)
+	expected = 0
+	if result != expected || err != nil {
+		t.Errorf("expected %v got %v", expected, result)
+	}
+	_, err = exponentailsearch(input, 1)
+	expected = 0
+	if err == nil {
+		t.Errorf("error should have been thrown for element not in slice")
+	}
+	_, err = exponentailsearch(input, 10)
+	expected = 0
+	if err == nil {
+		t.Errorf("error should have been thrown for element not in slice")
+	}
+	_, err = exponentailsearch(input, -10)
+	expected = 0
+	if err == nil {
+		t.Errorf("error should have been thrown for element not in slice")
+	}
+	_, err = exponentailsearch(input, 13330)
+	expected = 0
+	if err == nil {
+		t.Errorf("error should have been thrown for element not in slice")
+	}
+}
