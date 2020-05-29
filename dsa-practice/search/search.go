@@ -57,3 +57,26 @@ func jumpsearch(arr []int, target int, jump int) (int, error) {
 	}
 	return 0, errFooNFound
 }
+
+// interpolationsearch expects sorted, uniformly distributed array
+func interpolationsearch(arr []int, target int, low int, high int) (int, error) {
+	if high-low == 0 {
+		return 0, errFooNFound
+	}
+	// calculate position given low, high indexes, target, and even distribution
+	pos := low + ((target - arr[low]) * (high - low) / (arr[high] - arr[low]))
+	if target == arr[pos] {
+		return pos, nil
+	} else if pos == low || pos == high {
+		return 0, errFooNFound
+	} else if target > arr[pos] {
+		interpolationsearch(arr, target, pos+1, high)
+	} else if target < arr[pos] {
+		if pos < 1 {
+			interpolationsearch(arr, target, low, pos)
+		} else {
+			interpolationsearch(arr, target, low, pos-1)
+		}
+	}
+	return 0, errFooNFound
+}
